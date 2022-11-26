@@ -7,7 +7,7 @@ credentials:
     jsmith:
       email: jsmith@gmail.com
       name: John Smith
-      password: $2b$12$D1e/2TEZwoDY44mfxVtV1Oo5gOkXJ9ounWTjmIAmItWLVKcYe0SI2
+      password: $2b$12$5SqjDkQjtUmnlArSgxfJ1ey2MUeUpj3nsV596ze.dqiEWquBNHjx6
     rbriggs:
       email: rbriggs@gmail.com
       name: Rebecca Briggs

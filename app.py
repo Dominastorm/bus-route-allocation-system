@@ -3,6 +3,7 @@ import streamlit_authenticator as stauth
 import yaml
 from yaml.loader import SafeLoader
 from PIL import Image
+from change_password import change_password
 
 from home import home
 
@@ -32,28 +33,22 @@ def main() -> None:
     # If the user is authenticated, display the app
     if authentication_status:
         # SIDEBAR
-        menu = ['Home', 'Edit Rotue', ]
+        menu = ['Home', 'Change Address', 'Change Password', 'Logout']
         choice = st.sidebar.selectbox('',menu)
         st.sidebar._html('<br>')
-        # Logout
-        authenticator.logout('Logout', 'sidebar')
-    
+        
         # MAIN
         if choice == 'Home':
             home(name)
-
-        # Allow user to change password
-        try:
-            if authenticator.reset_password(username, 'Reset password', 'sidebar'):
-                # write to config file
-                with open('./config.yaml', 'w') as file:
-                    yaml.dump(config, file, default_flow_style=False)
-                st.sidebar.success('Password changed successfully')
-
-        except Exception as e:
-            st.error(e)
-
+        elif choice == 'Change Address':
+            pass
+        elif choice == 'Change Password':
+            change_password(authenticator, username, config)
+        elif choice == 'Logout':
+            st.write('Are you sure you want to log out?')
+            authenticator.logout('Logout', 'main')
         
+
     # Incorrect username or password
     elif authentication_status == False:
         st.error('Username/password is incorrect')
