@@ -4,6 +4,8 @@ import yaml
 from yaml.loader import SafeLoader
 from PIL import Image
 
+from home import home
+
 def main() -> None:
     # Load the configuration file
     with open('./config.yaml') as file:
@@ -26,20 +28,19 @@ def main() -> None:
 
     # Authenticate the user
     name, authentication_status, username = authenticator.login('Login', 'main')
-
+    
     # If the user is authenticated, display the app
     if authentication_status:
         # SIDEBAR
-        menu = ['Home', 'My Profile', ]
-        choice = st.sidebar.selectbox('Navigation Menu', menu)
-        
+        menu = ['Home', 'Edit Rotue', ]
+        choice = st.sidebar.selectbox('',menu)
         st.sidebar._html('<br>')
         # Logout
         authenticator.logout('Logout', 'sidebar')
     
         # MAIN
-        st.write(f'Welcome, *{name}*!')
-
+        if choice == 'Home':
+            home(name)
 
         # Allow user to change password
         try:
