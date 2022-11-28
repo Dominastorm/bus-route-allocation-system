@@ -3,8 +3,9 @@ import streamlit_authenticator as stauth
 import yaml
 from yaml.loader import SafeLoader
 from PIL import Image
-from change_password import change_password
 
+from database import create_tables
+from change_password import change_password
 from home import home
 
 def main() -> None:
@@ -34,8 +35,11 @@ def main() -> None:
     if authentication_status:
         # SIDEBAR
         menu = ['Home', 'Change Address', 'Change Password', 'Logout']
-        choice = st.sidebar.selectbox('',menu)
+        choice = st.sidebar.selectbox('Navigation Menu',menu, label_visibility='hidden')
         st.sidebar._html('<br>')
+
+        # create the tables, in case they don't exist
+        # create_tables()
         
         # MAIN
         if choice == 'Home':
@@ -47,7 +51,6 @@ def main() -> None:
         elif choice == 'Logout':
             st.write('Are you sure you want to log out?')
             authenticator.logout('Logout', 'main')
-        
 
     # Incorrect username or password
     elif authentication_status == False:

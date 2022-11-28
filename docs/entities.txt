@@ -1,0 +1,33 @@
+Student
+- Student ID (PK) 
+- Password
+- Bus Code (FK)
+- Stop Code (FK)
+- Student Name
+- Student Phone
+- Student Address
+- Transport Fees (Derived from Distance from College)
+
+Bus
+- Bus Code (PK)
+- Route Code (FK)
+- Bus Number
+- Driver Name
+- Driver Phone
+- Capacity
+- isFull
+
+Stop
+- Route Code (PK)
+- Stop Code (PK)
+- Stop Name
+- Stop Address
+- Pickup Time
+- Drop Time
+- Distance from College
+
+Admin
+- Admin ID (PK)
+- Name 
+- Password
+
