@@ -7,6 +7,7 @@ Student
 - Student Phone
 - Student Address
 - Transport Fees (Derived from Distance from College)
+- isAdmin
 
 Bus
 - Bus Code (PK)
@@ -26,8 +27,4 @@ Stop
 - Drop Time
 - Distance from College
 
-Admin
-- Admin ID (PK)
-- Name 
-- Password
 

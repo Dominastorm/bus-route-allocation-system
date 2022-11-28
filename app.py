@@ -8,7 +8,7 @@ from database import create_tables
 from change_password import change_password
 from query_execution import excecute_query
 from home import home
-from profile import student_profile, admin_profile
+from profile import my_profile
 from admin_check import check_admin
 
 def main() -> None:
@@ -62,10 +62,7 @@ def main() -> None:
         elif choice == 'Execute Query':
             excecute_query()
         elif choice == 'My Profile':
-            if is_admin:
-                admin_profile(username)
-            else:
-                student_profile(username)
+            my_profile(username)
 
     # Incorrect username or password
     elif authentication_status == False:
