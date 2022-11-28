@@ -6,6 +6,7 @@ from PIL import Image
 
 from database import create_tables
 from change_password import change_password
+from query_execution import excecute_query
 from home import home
 
 def main() -> None:
@@ -34,7 +35,7 @@ def main() -> None:
     # If the user is authenticated, display the app
     if authentication_status:
         # SIDEBAR
-        menu = ['Home', 'Change Address', 'Change Password', 'Logout']
+        menu = ['Home', 'Change Address', 'Change Password', 'Execute Query', 'Logout']
         choice = st.sidebar.selectbox('Navigation Menu',menu, label_visibility='hidden')
         st.sidebar._html('<br>')
 
@@ -51,6 +52,8 @@ def main() -> None:
         elif choice == 'Logout':
             st.write('Are you sure you want to log out?')
             authenticator.logout('Logout', 'main')
+        elif choice == 'Execute Query':
+            excecute_query()
 
     # Incorrect username or password
     elif authentication_status == False:
