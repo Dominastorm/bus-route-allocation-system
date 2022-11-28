@@ -30,7 +30,8 @@ def excecute_query():
             cur.execute(raw_code)
             query_result=cur.fetchall()
 
-            with st.expander("Output"):
+            st.write("Results")
+            with st.expander("JSON"):
                 st.write(query_result)
                 
             with st.expander("Table"):

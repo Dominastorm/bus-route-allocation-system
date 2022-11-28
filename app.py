@@ -8,6 +8,8 @@ from database import create_tables
 from change_password import change_password
 from query_execution import excecute_query
 from home import home
+from profile import student_profile, admin_profile
+from admin_check import check_admin
 
 def main() -> None:
     # Load the configuration file
@@ -35,8 +37,13 @@ def main() -> None:
     # If the user is authenticated, display the app
     if authentication_status:
         # SIDEBAR
-        menu = ['Home', 'Change Address', 'Change Password', 'Execute Query', 'Logout']
-        choice = st.sidebar.selectbox('Navigation Menu',menu, label_visibility='hidden')
+        is_admin = check_admin(username)
+        if is_admin:
+            menu = ['Home', 'Change Address', 'Change Password', 'Execute Query', 'My Profile', 'Logout']
+        else:
+            menu = ['Home', 'Change Address', 'Change Password', 'My Profile', 'Logout']
+        
+        choice = st.sidebar.selectbox('Navigation Menu', menu, label_visibility = 'hidden')
         st.sidebar._html('<br>')
 
         # create the tables, in case they don't exist
@@ -54,6 +61,11 @@ def main() -> None:
             authenticator.logout('Logout', 'main')
         elif choice == 'Execute Query':
             excecute_query()
+        elif choice == 'My Profile':
+            if is_admin:
+                admin_profile(username)
+            else:
+                student_profile(username)
 
     # Incorrect username or password
     elif authentication_status == False:

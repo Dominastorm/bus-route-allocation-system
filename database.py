@@ -14,14 +14,15 @@ Functions to create the tables in the database
 '''
 def create_tables() -> None:
     cursor.execute('''CREATE TABLE IF NOT EXISTS Student (
-    StudentID INT AUTO_INCREMENT PRIMARY KEY,
+    StudentID VARCHAR(255) PRIMARY KEY,
     Password VARCHAR(255),
     BusCode INT,
     StopCode INT,
     StudentName VARCHAR(255),
     StudentPhone VARCHAR(255),
     StudentAddress VARCHAR(255),
-    TransportFees FLOAT);''')
+    TransportFees FLOAT,
+    isAdmin BOOLEAN);''')
 
     cursor.execute('''CREATE TABLE IF NOT EXISTS Bus (
     BusCode INT AUTO_INCREMENT PRIMARY KEY,
@@ -41,8 +42,3 @@ def create_tables() -> None:
     DropTime TIME,
     DistanceFromCollege FLOAT,
     PRIMARY KEY (RouteCode, StopCode));''')
-
-    cursor.execute('''CREATE TABLE IF NOT EXISTS Admin (
-    AdminID INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(255),
-    Password VARCHAR(255));''')
