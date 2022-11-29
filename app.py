@@ -30,7 +30,6 @@ def main() -> None:
     st.sidebar.image(image, use_column_width=True)
     st.sidebar.title('Bus Route Allocation System')
     
-
     # Authenticate the user
     name, authentication_status, username = authenticator.login('Login', 'main')
     
@@ -51,7 +50,7 @@ def main() -> None:
         
         # MAIN
         if choice == 'Home':
-            home(name)
+            home(username)
         elif choice == 'Change Address':
             pass
         elif choice == 'Change Password':
