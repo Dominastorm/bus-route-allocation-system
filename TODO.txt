@@ -1,0 +1,7 @@
+- Change the password management from the yaml file to the database
+- Admin can insert data
+- He can also upload a csv file that contains the data
+- Re-arrange the order of the navigation menu 
+- Add the foreign key constraints to the database
+- Write a function to calculate the transport fees
+- Hash the passwords in the SQL database

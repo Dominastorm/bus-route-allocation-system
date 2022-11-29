@@ -10,19 +10,23 @@ from query_execution import excecute_query
 from home import home
 from profile import my_profile
 from admin_check import check_admin
+from load_credentials import load_credentials
 
 def main() -> None:
     # Load the configuration file
     with open('./config.yaml') as file:
         config = yaml.load(file, Loader=SafeLoader)
 
+    # Get the credentials from the database
+    credentials = {'usernames' : load_credentials()}
+    config['credentials'] = credentials
+
     # Create the authenticator
     authenticator = stauth.Authenticate(
         config['credentials'],
         config['cookie']['name'],
         config['cookie']['key'],
-        config['cookie']['expiry_days'],
-        config['preauthorized']
+        config['cookie']['expiry_days']
     )
 
     # Add a logo to the sidebar
@@ -43,7 +47,7 @@ def main() -> None:
             menu = ['Home', 'Change Address', 'Change Password', 'My Profile', 'Logout']
         
         choice = st.sidebar.selectbox('Navigation Menu', menu, label_visibility = 'hidden')
-        st.sidebar._html('<br>')
+        # st.sidebar._html('<br>')
 
         # create the tables, in case they don't exist
         # create_tables()
@@ -55,6 +59,7 @@ def main() -> None:
             pass
         elif choice == 'Change Password':
             change_password(authenticator, username, config)
+            st.experimental_rerun()
         elif choice == 'Logout':
             st.write('Are you sure you want to log out?')
             authenticator.logout('Logout', 'main')
