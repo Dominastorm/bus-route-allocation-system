@@ -1,0 +1,4 @@
+DBMS Design, DBMS SQL Queries -> Suvarna
+app.py, database.py, query_execution.py -> Chawla 
+admin_check.py, change_password.py, load_credentials.py -> Sharma
+profile.py, home.py, Documentation -> Jimish

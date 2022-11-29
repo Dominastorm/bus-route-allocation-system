@@ -42,9 +42,9 @@ def main() -> None:
         # SIDEBAR
         is_admin = check_admin(username)
         if is_admin:
-            menu = ['Home', 'Change Address', 'Change Password', 'Execute Query', 'My Profile', 'Logout']
+            menu = ['Home', 'Change Password', 'Execute Query', 'My Profile', 'Logout']
         else:
-            menu = ['Home', 'Change Address', 'Change Password', 'My Profile', 'Logout']
+            menu = ['Home', 'Change Password', 'My Profile', 'Logout']
         
         choice = st.sidebar.selectbox('Navigation Menu', menu, label_visibility = 'hidden')
         # st.sidebar._html('<br>')
@@ -55,8 +55,6 @@ def main() -> None:
         # MAIN
         if choice == 'Home':
             home(username)
-        elif choice == 'Change Address':
-            pass
         elif choice == 'Change Password':
             change_password(authenticator, username, config)
             st.experimental_rerun()
